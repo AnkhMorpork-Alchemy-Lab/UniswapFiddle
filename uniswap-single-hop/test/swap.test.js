@@ -28,11 +28,11 @@ describe("Swaps", () => {
     const amountIn = 10n ** 18n
 
     // Deposit WETH
-    await weth.deposit({ value: amountIn })
-    await weth.approve(swaps.address, amountIn)
+    await weth.connect(accounts[0]).deposit({ value: amountIn })
+    await weth.connect(accounts[0]).approve(swaps.address, amountIn)
 
     // Swap
-    await swaps.swapExactInputSingle(amountIn)
+    await swaps.connect(accounts[0]).swapExactInputSingle(amountIn)
 
     console.log("DAI balance", await dai.balanceOf(accounts[0].address))
   })
@@ -42,11 +42,11 @@ describe("Swaps", () => {
     const daiAmountOut = 100n * 10n ** 18n
 
     // Deposit WETH
-    await weth.deposit({ value: wethAmountInMax })
-    await weth.approve(swaps.address, wethAmountInMax)
+    await weth.connect(accounts[0]).deposit({ value: wethAmountInMax })
+    await weth.connect(accounts[0]).approve(swaps.address, wethAmountInMax)
 
     // Swap
-    await swaps.swapExactOutputSingle(daiAmountOut, wethAmountInMax)
+    await swaps.connect(accounts[0]).swapExactOutputSingle(daiAmountOut, wethAmountInMax)
 
     console.log("DAI balance", await dai.balanceOf(accounts[0].address))
   })
@@ -55,11 +55,11 @@ describe("Swaps", () => {
     const amountIn = 10n ** 18n
 
     // Deposit WETH
-    await weth.deposit({ value: amountIn })
-    await weth.approve(swaps.address, amountIn)
+    await weth.connect(accounts[0]).deposit({ value: amountIn })
+    await weth.connect(accounts[0]).approve(swaps.address, amountIn)
 
     // Swap
-    await swaps.swapExactInputMultihop(amountIn)
+    await swaps.connect(accounts[0]).swapExactInputMultihop(amountIn)
 
     console.log("DAI balance", await dai.balanceOf(accounts[0].address))
   })
@@ -69,11 +69,11 @@ describe("Swaps", () => {
     const daiAmountOut = 100n * 10n ** 18n
 
     // Deposit WETH
-    await weth.deposit({ value: wethAmountInMax })
-    await weth.approve(swaps.address, wethAmountInMax)
+    await weth.connect(accounts[0]).deposit({ value: wethAmountInMax })
+    await weth.connect(accounts[0]).approve(swaps.address, wethAmountInMax)
 
     // Swap
-    await swaps.swapExactOutputMultihop(daiAmountOut, wethAmountInMax)
+    await swaps.connect(accounts[0]).swapExactOutputMultihop(daiAmountOut, wethAmountInMax)
 
     console.log("DAI balance", await dai.balanceOf(accounts[0].address))
   })
